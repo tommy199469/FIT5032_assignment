@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="UserSet" EntityType="Model1.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RatingSet" EntityType="Model1.Store.RatingSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BookingSet" EntityType="Model1.Store.BookingSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GPSet" EntityType="Model1.Store.GPSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="XraySet" EntityType="Model1.Store.XraySet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserRating" Association="Model1.Store.UserRating">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Rating" EntitySet="RatingSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserBooking" Association="Model1.Store.UserBooking">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Booking" EntitySet="BookingSet" />
+    </AssociationSet>
+    <AssociationSet Name="GPBooking" Association="Model1.Store.GPBooking">
+      <End Role="GP" EntitySet="GPSet" />
+      <End Role="Booking" EntitySet="BookingSet" />
+    </AssociationSet>
+    <AssociationSet Name="XrayGP" Association="Model1.Store.XrayGP">
+      <End Role="Xray" EntitySet="XraySet" />
+      <End Role="GP" EntitySet="GPSet" />
+    </AssociationSet>
+    <AssociationSet Name="GPRating" Association="Model1.Store.GPRating">
+      <End Role="GP" EntitySet="GPSet" />
+      <End Role="Rating" EntitySet="RatingSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="isAdmin" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RatingSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_userId" Type="int" Nullable="false" />
+    <Property Name="GPId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookingSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_userId" Type="int" Nullable="false" />
+    <Property Name="GPId" Type="int" Nullable="false" />
+    <Property Name="bookingDateTime" Type="datetime" Nullable="false" />
+    <Property Name="total_cost" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GPSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ADDRESS" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="XrayId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="XraySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="cost" Type="float" Nullable="false" />
+  </EntityType>
+  <Association Name="UserRating">
+    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1" />
+    <End Role="Rating" Type="Model1.Store.RatingSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="User_userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserBooking">
+    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1" />
+    <End Role="Booking" Type="Model1.Store.BookingSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="User_userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GPBooking">
+    <End Role="GP" Type="Model1.Store.GPSet" Multiplicity="1" />
+    <End Role="Booking" Type="Model1.Store.BookingSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GP">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="GPId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="XrayGP">
+    <End Role="Xray" Type="Model1.Store.XraySet" Multiplicity="1" />
+    <End Role="GP" Type="Model1.Store.GPSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Xray">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GP">
+        <PropertyRef Name="XrayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GPRating">
+    <End Role="GP" Type="Model1.Store.GPSet" Multiplicity="1" />
+    <End Role="Rating" Type="Model1.Store.RatingSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GP">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="GPId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserSet" EntityType="Model1.User" />
+          <EntitySet Name="RatingSet" EntityType="Model1.Rating" />
+          <EntitySet Name="BookingSet" EntityType="Model1.Booking" />
+          <EntitySet Name="GPSet" EntityType="Model1.GP" />
+          <EntitySet Name="XraySet" EntityType="Model1.Xray" />
+          <AssociationSet Name="UserRating" Association="Model1.UserRating">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Rating" EntitySet="RatingSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserBooking" Association="Model1.UserBooking">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Booking" EntitySet="BookingSet" />
+          </AssociationSet>
+          <AssociationSet Name="GPBooking" Association="Model1.GPBooking">
+            <End Role="GP" EntitySet="GPSet" />
+            <End Role="Booking" EntitySet="BookingSet" />
+          </AssociationSet>
+          <AssociationSet Name="XrayGP" Association="Model1.XrayGP">
+            <End Role="Xray" EntitySet="XraySet" />
+            <End Role="GP" EntitySet="GPSet" />
+          </AssociationSet>
+          <AssociationSet Name="GPRating" Association="Model1.GPRating">
+            <End Role="GP" EntitySet="GPSet" />
+            <End Role="Rating" EntitySet="RatingSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" />
+          <Property Name="password" Type="String" Nullable="false" />
+          <Property Name="isAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Rating" Relationship="Model1.UserRating" FromRole="User" ToRole="Rating" />
+          <NavigationProperty Name="Booking" Relationship="Model1.UserBooking" FromRole="User" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_userId" Type="Int32" Nullable="false" />
+          <Property Name="GPId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.UserRating" FromRole="Rating" ToRole="User" />
+          <NavigationProperty Name="GP" Relationship="Model1.GPRating" FromRole="Rating" ToRole="GP" />
+        </EntityType>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_userId" Type="Int32" Nullable="false" />
+          <Property Name="GPId" Type="Int32" Nullable="false" />
+          <Property Name="bookingDateTime" Type="DateTime" Nullable="false" />
+          <Property Name="total_cost" Type="Double" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.UserBooking" FromRole="Booking" ToRole="User" />
+          <NavigationProperty Name="GP" Relationship="Model1.GPBooking" FromRole="Booking" ToRole="GP" />
+        </EntityType>
+        <EntityType Name="GP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADDRESS" Type="String" Nullable="false" />
+          <Property Name="phone" Type="String" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" />
+          <Property Name="XrayId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Booking" Relationship="Model1.GPBooking" FromRole="GP" ToRole="Booking" />
+          <NavigationProperty Name="Xray" Relationship="Model1.XrayGP" FromRole="GP" ToRole="Xray" />
+          <NavigationProperty Name="Rating" Relationship="Model1.GPRating" FromRole="GP" ToRole="Rating" />
+        </EntityType>
+        <EntityType Name="Xray">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" Nullable="false" />
+          <Property Name="cost" Type="Double" Nullable="false" />
+          <NavigationProperty Name="GP" Relationship="Model1.XrayGP" FromRole="Xray" ToRole="GP" />
+        </EntityType>
+        <Association Name="UserRating">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Rating" Role="Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="User_userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserBooking">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="User_userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GPBooking">
+          <End Type="Model1.GP" Role="GP" Multiplicity="1" />
+          <End Type="Model1.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="GPId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="XrayGP">
+          <End Type="Model1.Xray" Role="Xray" Multiplicity="1" />
+          <End Type="Model1.GP" Role="GP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Xray">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GP">
+              <PropertyRef Name="XrayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GPRating">
+          <End Type="Model1.GP" Role="GP" Multiplicity="1" />
+          <End Type="Model1.Rating" Role="Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="GPId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RatingSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Rating)">
+        <MappingFragment StoreEntitySet="RatingSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="User_userId" ColumnName="User_userId" />
+          <ScalarProperty Name="GPId" ColumnName="GPId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookingSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Booking)">
+        <MappingFragment StoreEntitySet="BookingSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="User_userId" ColumnName="User_userId" />
+          <ScalarProperty Name="GPId" ColumnName="GPId" />
+          <ScalarProperty Name="bookingDateTime" ColumnName="bookingDateTime" />
+          <ScalarProperty Name="total_cost" ColumnName="total_cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GPSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.GP)">
+        <MappingFragment StoreEntitySet="GPSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="XrayId" ColumnName="XrayId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="XraySet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Xray)">
+        <MappingFragment StoreEntitySet="XraySet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

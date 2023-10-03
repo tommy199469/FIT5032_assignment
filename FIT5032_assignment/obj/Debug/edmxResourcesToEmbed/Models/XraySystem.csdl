@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="UserSet" EntityType="Model1.User" />
+    <EntitySet Name="RatingSet" EntityType="Model1.Rating" />
+    <EntitySet Name="BookingSet" EntityType="Model1.Booking" />
+    <EntitySet Name="GPSet" EntityType="Model1.GP" />
+    <EntitySet Name="XraySet" EntityType="Model1.Xray" />
+    <AssociationSet Name="UserRating" Association="Model1.UserRating">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Rating" EntitySet="RatingSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserBooking" Association="Model1.UserBooking">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Booking" EntitySet="BookingSet" />
+    </AssociationSet>
+    <AssociationSet Name="GPBooking" Association="Model1.GPBooking">
+      <End Role="GP" EntitySet="GPSet" />
+      <End Role="Booking" EntitySet="BookingSet" />
+    </AssociationSet>
+    <AssociationSet Name="XrayGP" Association="Model1.XrayGP">
+      <End Role="Xray" EntitySet="XraySet" />
+      <End Role="GP" EntitySet="GPSet" />
+    </AssociationSet>
+    <AssociationSet Name="GPRating" Association="Model1.GPRating">
+      <End Role="GP" EntitySet="GPSet" />
+      <End Role="Rating" EntitySet="RatingSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" />
+    <Property Name="LastName" Type="String" Nullable="false" />
+    <Property Name="Username" Type="String" Nullable="false" />
+    <Property Name="password" Type="String" Nullable="false" />
+    <Property Name="isAdmin" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Rating" Relationship="Model1.UserRating" FromRole="User" ToRole="Rating" />
+    <NavigationProperty Name="Booking" Relationship="Model1.UserBooking" FromRole="User" ToRole="Booking" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_userId" Type="Int32" Nullable="false" />
+    <Property Name="GPId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Model1.UserRating" FromRole="Rating" ToRole="User" />
+    <NavigationProperty Name="GP" Relationship="Model1.GPRating" FromRole="Rating" ToRole="GP" />
+  </EntityType>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_userId" Type="Int32" Nullable="false" />
+    <Property Name="GPId" Type="Int32" Nullable="false" />
+    <Property Name="bookingDateTime" Type="DateTime" Nullable="false" />
+    <Property Name="total_cost" Type="Double" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Model1.UserBooking" FromRole="Booking" ToRole="User" />
+    <NavigationProperty Name="GP" Relationship="Model1.GPBooking" FromRole="Booking" ToRole="GP" />
+  </EntityType>
+  <EntityType Name="GP">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ADDRESS" Type="String" Nullable="false" />
+    <Property Name="phone" Type="String" Nullable="false" />
+    <Property Name="email" Type="String" Nullable="false" />
+    <Property Name="XrayId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Booking" Relationship="Model1.GPBooking" FromRole="GP" ToRole="Booking" />
+    <NavigationProperty Name="Xray" Relationship="Model1.XrayGP" FromRole="GP" ToRole="Xray" />
+    <NavigationProperty Name="Rating" Relationship="Model1.GPRating" FromRole="GP" ToRole="Rating" />
+  </EntityType>
+  <EntityType Name="Xray">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="String" Nullable="false" />
+    <Property Name="cost" Type="Double" Nullable="false" />
+    <NavigationProperty Name="GP" Relationship="Model1.XrayGP" FromRole="Xray" ToRole="GP" />
+  </EntityType>
+  <Association Name="UserRating">
+    <End Type="Model1.User" Role="User" Multiplicity="1" />
+    <End Type="Model1.Rating" Role="Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="User_userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserBooking">
+    <End Type="Model1.User" Role="User" Multiplicity="1" />
+    <End Type="Model1.Booking" Role="Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="User_userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GPBooking">
+    <End Type="Model1.GP" Role="GP" Multiplicity="1" />
+    <End Type="Model1.Booking" Role="Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GP">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="GPId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="XrayGP">
+    <End Type="Model1.Xray" Role="Xray" Multiplicity="1" />
+    <End Type="Model1.GP" Role="GP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Xray">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GP">
+        <PropertyRef Name="XrayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GPRating">
+    <End Type="Model1.GP" Role="GP" Multiplicity="1" />
+    <End Type="Model1.Rating" Role="Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GP">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="GPId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
