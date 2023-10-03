@@ -15,17 +15,8 @@
         <AssociationConnector Association="Model1.GPBooking" />
         <AssociationConnector Association="Model1.XrayGP" />
         <AssociationConnector Association="Model1.GPRating" />
-        <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="7.5434309744944006" PointY="23.155313189679436" />
-        <EntityTypeShape EntityType="Model1.Rating" Width="1.5" PointX="11.839473461657517" PointY="31.719395279753673" />
-        <EntityTypeShape EntityType="Model1.Booking" Width="1.5" PointX="8.6515867135727724" PointY="30.925437613821327" />
-        <EntityTypeShape EntityType="Model1.GP" Width="1.5" PointX="7.6608326209992317" PointY="21.89969220287152" />
-        <EntityTypeShape EntityType="Model1.Xray" Width="1.5" PointX="8.387442741723472" PointY="2.8594694448911908" />
-        <AssociationConnector Association="Model1.UserRating" />
-        <AssociationConnector Association="Model1.UserBooking" />
-        <AssociationConnector Association="Model1.GPBooking" />
-        <AssociationConnector Association="Model1.XrayGP" />
-        <AssociationConnector Association="Model1.GPRating" />
-      </Diagram>
+        <EntityTypeShape EntityType="Model1.Imag" Width="1.5" PointX="1" PointY="0.75" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

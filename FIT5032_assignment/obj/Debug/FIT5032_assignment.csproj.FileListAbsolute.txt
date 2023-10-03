@@ -69,6 +69,8 @@ C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\Microsoft.O
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\Newtonsoft.Json.dll
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\Owin.dll
+C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\SendGrid.dll
+C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\StarkbankEcdsa.dll
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\System.Web.Helpers.dll
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\System.Web.Mvc.dll
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\System.Web.Optimization.dll
@@ -77,6 +79,9 @@ C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\System.Web.
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\System.Web.WebPages.dll
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\System.Web.WebPages.Razor.dll
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\WebGrease.dll
+C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\Newtonsoft.Json.xml
+C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\SendGrid.pdb
+C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\SendGrid.xml
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\System.Web.Helpers.xml
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\System.Web.Mvc.xml
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\System.Web.Optimization.xml
@@ -84,7 +89,6 @@ C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\System.Web.
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\System.Web.WebPages.xml
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\System.Web.WebPages.Deployment.xml
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\System.Web.WebPages.Razor.xml
-C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\Newtonsoft.Json.xml
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\Antlr3.Runtime.pdb
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\EntityFramework.xml
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\EntityFramework.SqlServer.xml

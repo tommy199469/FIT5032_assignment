@@ -169,6 +169,7 @@
             <End Role="GP" EntitySet="GPSet" />
             <End Role="Rating" EntitySet="RatingSet" />
           </AssociationSet>
+          <EntitySet Name="ImagSet" EntityType="Model1.Imag" />
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -287,6 +288,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Imag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Path" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
