@@ -26,6 +26,7 @@
       <End Role="GP" EntitySet="GPSet" />
       <End Role="Rating" EntitySet="RatingSet" />
     </AssociationSet>
+    <EntitySet Name="ImageSet" EntityType="Model1.Image" />
   </EntityContainer>
   <EntityType Name="User">
     <Key>
@@ -144,4 +145,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Path" Type="String" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" />
+  </EntityType>
 </Schema>

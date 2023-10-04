@@ -30,5 +30,6 @@ namespace FIT5032_assignment.Models
         public virtual DbSet<Booking> BookingSet { get; set; }
         public virtual DbSet<GP> GPSet { get; set; }
         public virtual DbSet<Xray> XraySet { get; set; }
+        public virtual DbSet<Image> ImageSet { get; set; }
     }
 }

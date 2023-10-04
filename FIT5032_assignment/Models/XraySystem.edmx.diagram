@@ -15,7 +15,7 @@
         <AssociationConnector Association="Model1.GPBooking" />
         <AssociationConnector Association="Model1.XrayGP" />
         <AssociationConnector Association="Model1.GPRating" />
-        <EntityTypeShape EntityType="Model1.Imag" Width="1.5" PointX="1" PointY="0.75" />
+        <EntityTypeShape EntityType="Model1.Image" Width="1.5" PointX="1" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -6,6 +6,7 @@
     <EntitySet Name="BookingSet" EntityType="Model1.Store.BookingSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="GPSet" EntityType="Model1.Store.GPSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="XraySet" EntityType="Model1.Store.XraySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ImageSet" EntityType="Model1.Store.ImageSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="UserRating" Association="Model1.Store.UserRating">
       <End Role="User" EntitySet="UserSet" />
       <End Role="Rating" EntitySet="RatingSet" />
@@ -73,6 +74,14 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="cost" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ImageSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Path" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="UserRating">
     <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1" />

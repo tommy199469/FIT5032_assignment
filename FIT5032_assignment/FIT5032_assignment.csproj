@@ -180,6 +180,7 @@
     <Compile Include="Controllers\BookingsController.cs" />
     <Compile Include="Controllers\GPsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -195,10 +196,9 @@
       <DependentUpon>XraySystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Imag.cs">
+    <Compile Include="Models\Image.cs">
       <DependentUpon>XraySystem.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Images.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Rating.cs">
       <DependentUpon>XraySystem.tt</DependentUpon>
@@ -352,6 +352,11 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Home\Send_Email.cshtml" />
+    <Content Include="Views\Images\Create.cshtml" />
+    <Content Include="Views\Images\Delete.cshtml" />
+    <Content Include="Views\Images\Details.cshtml" />
+    <Content Include="Views\Images\Edit.cshtml" />
+    <Content Include="Views\Images\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />
