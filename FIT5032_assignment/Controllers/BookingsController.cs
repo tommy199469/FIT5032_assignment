@@ -15,6 +15,7 @@ namespace FIT5032_assignment.Controllers
         private Model1Container db = new Model1Container();
 
         // GET: Bookings
+        [Authorize]
         public ActionResult Index()
         {
             var bookingSet = db.BookingSet.Include(b => b.User).Include(b => b.GP);
@@ -22,6 +23,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: Bookings/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: Bookings/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.User_userId = new SelectList(db.UserSet, "userId", "FirstName");
@@ -49,6 +52,7 @@ namespace FIT5032_assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "Id,User_userId,GPId,bookingDateTime,total_cost")] Booking booking)
         {
             if (ModelState.IsValid)
@@ -64,6 +68,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: Bookings/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +90,7 @@ namespace FIT5032_assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,User_userId,GPId,bookingDateTime,total_cost")] Booking booking)
         {
             if (ModelState.IsValid)
@@ -99,6 +105,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: Bookings/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -116,6 +123,7 @@ namespace FIT5032_assignment.Controllers
         // POST: Bookings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Booking booking = db.BookingSet.Find(id);

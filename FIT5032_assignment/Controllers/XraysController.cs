@@ -15,12 +15,14 @@ namespace FIT5032_assignment.Controllers
         private Model1Container db = new Model1Container();
 
         // GET: Xrays
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.XraySet.ToList());
         }
 
         // GET: Xrays/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: Xrays/Create
+        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace FIT5032_assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,type,cost")] Xray xray)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: Xrays/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace FIT5032_assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,type,cost")] Xray xray)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: Xrays/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace FIT5032_assignment.Controllers
         // POST: Xrays/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Xray xray = db.XraySet.Find(id);

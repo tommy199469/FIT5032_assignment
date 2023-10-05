@@ -15,6 +15,8 @@ namespace FIT5032_assignment.Controllers
         private Model1Container db = new Model1Container();
 
         // GET: Ratings
+        [Authorize]
+
         public ActionResult Index()
         {
             var ratingSet = db.RatingSet.Include(r => r.User).Include(r => r.GP);
@@ -22,6 +24,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: Ratings/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +40,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: Ratings/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.User_userId = new SelectList(db.UserSet, "userId", "FirstName");
@@ -49,6 +53,7 @@ namespace FIT5032_assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "Id,User_userId,GPId")] Rating rating)
         {
             if (ModelState.IsValid)
@@ -64,6 +69,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: Ratings/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +91,7 @@ namespace FIT5032_assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,User_userId,GPId")] Rating rating)
         {
             if (ModelState.IsValid)
@@ -99,6 +106,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: Ratings/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -116,6 +124,7 @@ namespace FIT5032_assignment.Controllers
         // POST: Ratings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Rating rating = db.RatingSet.Find(id);

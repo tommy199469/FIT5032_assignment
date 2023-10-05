@@ -30,6 +30,7 @@ namespace FIT5032_assignment.Controllers
             return View();
         }
 
+        [Authorize(Roles ="Admin")]
         public ActionResult Send_Email()
         {
             return View(new SendEmailViewModel());
@@ -37,6 +38,7 @@ namespace FIT5032_assignment.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Send_Email(SendEmailViewModel model, HttpPostedFileBase postedFile)
         {
             if (ModelState.IsValid)

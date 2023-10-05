@@ -15,6 +15,7 @@ namespace FIT5032_assignment.Controllers
         private Model1Container db = new Model1Container();
 
         // GET: GPs
+        [Authorize]
         public ActionResult Index()
         {
             var gPSet = db.GPSet.Include(g => g.Xray);
@@ -22,6 +23,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: GPs/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,8 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: GPs/Create
+        [Authorize(Roles ="Admin")]
+
         public ActionResult Create()
         {
             ViewBag.XrayId = new SelectList(db.XraySet, "Id", "type");
@@ -48,6 +52,7 @@ namespace FIT5032_assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,ADDRESS,phone,email,XrayId")] GP gP)
         {
             if (ModelState.IsValid)
@@ -62,6 +67,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: GPs/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,6 +88,7 @@ namespace FIT5032_assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,ADDRESS,phone,email,XrayId")] GP gP)
         {
             if (ModelState.IsValid)
@@ -95,6 +102,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         // GET: GPs/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -112,6 +120,7 @@ namespace FIT5032_assignment.Controllers
         // POST: GPs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             GP gP = db.GPSet.Find(id);
