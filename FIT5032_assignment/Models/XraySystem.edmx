@@ -6,20 +6,10 @@
     <edmx:StorageModels>
     <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="Model1StoreContainer">
-    <EntitySet Name="UserSet" EntityType="Model1.Store.UserSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RatingSet" EntityType="Model1.Store.RatingSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BookingSet" EntityType="Model1.Store.BookingSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="GPSet" EntityType="Model1.Store.GPSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="XraySet" EntityType="Model1.Store.XraySet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ImageSet" EntityType="Model1.Store.ImageSet" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="UserRating" Association="Model1.Store.UserRating">
-      <End Role="User" EntitySet="UserSet" />
-      <End Role="Rating" EntitySet="RatingSet" />
-    </AssociationSet>
-    <AssociationSet Name="UserBooking" Association="Model1.Store.UserBooking">
-      <End Role="User" EntitySet="UserSet" />
-      <End Role="Booking" EntitySet="BookingSet" />
-    </AssociationSet>
     <AssociationSet Name="GPBooking" Association="Model1.Store.GPBooking">
       <End Role="GP" EntitySet="GPSet" />
       <End Role="Booking" EntitySet="BookingSet" />
@@ -33,23 +23,12 @@
       <End Role="Rating" EntitySet="RatingSet" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="UserSet">
-    <Key>
-      <PropertyRef Name="userId" />
-    </Key>
-    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="isAdmin" Type="bit" Nullable="false" />
-  </EntityType>
   <EntityType Name="RatingSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="User_userId" Type="int" Nullable="false" />
+    <Property Name="userId" Type="nvarchar(max)" Nullable="false" />
     <Property Name="GPId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BookingSet">
@@ -57,7 +36,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="User_userId" Type="int" Nullable="false" />
+    <Property Name="userId" Type="nvarchar(max)" Nullable="false" />
     <Property Name="GPId" Type="int" Nullable="false" />
     <Property Name="bookingDateTime" Type="datetime" Nullable="false" />
     <Property Name="total_cost" Type="float" Nullable="false" />
@@ -80,38 +59,6 @@
     <Property Name="type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="cost" Type="float" Nullable="false" />
   </EntityType>
-  <EntityType Name="ImageSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Path" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <Association Name="UserRating">
-    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1" />
-    <End Role="Rating" Type="Model1.Store.RatingSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="userId" />
-      </Principal>
-      <Dependent Role="Rating">
-        <PropertyRef Name="User_userId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="UserBooking">
-    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1" />
-    <End Role="Booking" Type="Model1.Store.BookingSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="userId" />
-      </Principal>
-      <Dependent Role="Booking">
-        <PropertyRef Name="User_userId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="GPBooking">
     <End Role="GP" Type="Model1.Store.GPSet" Multiplicity="1" />
     <End Role="Booking" Type="Model1.Store.BookingSet" Multiplicity="*" />
@@ -153,19 +100,10 @@
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="UserSet" EntityType="Model1.User" />
           <EntitySet Name="RatingSet" EntityType="Model1.Rating" />
           <EntitySet Name="BookingSet" EntityType="Model1.Booking" />
           <EntitySet Name="GPSet" EntityType="Model1.GP" />
           <EntitySet Name="XraySet" EntityType="Model1.Xray" />
-          <AssociationSet Name="UserRating" Association="Model1.UserRating">
-            <End Role="User" EntitySet="UserSet" />
-            <End Role="Rating" EntitySet="RatingSet" />
-          </AssociationSet>
-          <AssociationSet Name="UserBooking" Association="Model1.UserBooking">
-            <End Role="User" EntitySet="UserSet" />
-            <End Role="Booking" EntitySet="BookingSet" />
-          </AssociationSet>
           <AssociationSet Name="GPBooking" Association="Model1.GPBooking">
             <End Role="GP" EntitySet="GPSet" />
             <End Role="Booking" EntitySet="BookingSet" />
@@ -178,29 +116,14 @@
             <End Role="GP" EntitySet="GPSet" />
             <End Role="Rating" EntitySet="RatingSet" />
           </AssociationSet>
-          <EntitySet Name="ImageSet" EntityType="Model1.Image" />
         </EntityContainer>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="userId" />
-          </Key>
-          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" />
-          <Property Name="LastName" Type="String" Nullable="false" />
-          <Property Name="Username" Type="String" Nullable="false" />
-          <Property Name="password" Type="String" Nullable="false" />
-          <Property Name="isAdmin" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Rating" Relationship="Model1.UserRating" FromRole="User" ToRole="Rating" />
-          <NavigationProperty Name="Booking" Relationship="Model1.UserBooking" FromRole="User" ToRole="Booking" />
-        </EntityType>
         <EntityType Name="Rating">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_userId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="String" Nullable="false" />
           <Property Name="GPId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Model1.UserRating" FromRole="Rating" ToRole="User" />
           <NavigationProperty Name="GP" Relationship="Model1.GPRating" FromRole="Rating" ToRole="GP" />
         </EntityType>
         <EntityType Name="Booking">
@@ -208,11 +131,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_userId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="String" Nullable="false" />
           <Property Name="GPId" Type="Int32" Nullable="false" />
           <Property Name="bookingDateTime" Type="DateTime" Nullable="false" />
           <Property Name="total_cost" Type="Double" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Model1.UserBooking" FromRole="Booking" ToRole="User" />
           <NavigationProperty Name="GP" Relationship="Model1.GPBooking" FromRole="Booking" ToRole="GP" />
         </EntityType>
         <EntityType Name="GP">
@@ -237,30 +159,6 @@
           <Property Name="cost" Type="Double" Nullable="false" />
           <NavigationProperty Name="GP" Relationship="Model1.XrayGP" FromRole="Xray" ToRole="GP" />
         </EntityType>
-        <Association Name="UserRating">
-          <End Type="Model1.User" Role="User" Multiplicity="1" />
-          <End Type="Model1.Rating" Role="Rating" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="userId" />
-            </Principal>
-            <Dependent Role="Rating">
-              <PropertyRef Name="User_userId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UserBooking">
-          <End Type="Model1.User" Role="User" Multiplicity="1" />
-          <End Type="Model1.Booking" Role="Booking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="userId" />
-            </Principal>
-            <Dependent Role="Booking">
-              <PropertyRef Name="User_userId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="GPBooking">
           <End Type="Model1.GP" Role="GP" Multiplicity="1" />
           <End Type="Model1.Booking" Role="Booking" Multiplicity="*" />
@@ -297,37 +195,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Image">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Path" Type="String" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
-    <EntitySetMapping Name="UserSet">
-      <EntityTypeMapping TypeName="IsTypeOf(Model1.User)">
-        <MappingFragment StoreEntitySet="UserSet">
-          <ScalarProperty Name="userId" ColumnName="userId" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="RatingSet">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Rating)">
         <MappingFragment StoreEntitySet="RatingSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="User_userId" ColumnName="User_userId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="GPId" ColumnName="GPId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -336,7 +214,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Booking)">
         <MappingFragment StoreEntitySet="BookingSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="User_userId" ColumnName="User_userId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="GPId" ColumnName="GPId" />
           <ScalarProperty Name="bookingDateTime" ColumnName="bookingDateTime" />
           <ScalarProperty Name="total_cost" ColumnName="total_cost" />
@@ -360,15 +238,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="cost" ColumnName="cost" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ImageSet">
-      <EntityTypeMapping TypeName="IsTypeOf(Model1.Image)">
-        <MappingFragment StoreEntitySet="ImageSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Path" ColumnName="Path" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

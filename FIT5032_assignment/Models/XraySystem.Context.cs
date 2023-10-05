@@ -25,11 +25,9 @@ namespace FIT5032_assignment.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<User> UserSet { get; set; }
         public virtual DbSet<Rating> RatingSet { get; set; }
         public virtual DbSet<Booking> BookingSet { get; set; }
         public virtual DbSet<GP> GPSet { get; set; }
         public virtual DbSet<Xray> XraySet { get; set; }
-        public virtual DbSet<Image> ImageSet { get; set; }
     }
 }

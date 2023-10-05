@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FIT5032_assignment.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FIT5032_assignment.Controllers
 {
@@ -19,7 +20,7 @@ namespace FIT5032_assignment.Controllers
 
         public ActionResult Index()
         {
-            var ratingSet = db.RatingSet.Include(r => r.User).Include(r => r.GP);
+            var ratingSet = db.RatingSet.Include(r => r.GP);
             return View(ratingSet.ToList());
         }
 
@@ -43,7 +44,6 @@ namespace FIT5032_assignment.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.User_userId = new SelectList(db.UserSet, "userId", "FirstName");
             ViewBag.GPId = new SelectList(db.GPSet, "Id", "ADDRESS");
             return View();
         }
@@ -54,16 +54,16 @@ namespace FIT5032_assignment.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind(Include = "Id,User_userId,GPId")] Rating rating)
+        public ActionResult Create([Bind(Include = "Id,GPId")] Rating rating)
         {
             if (ModelState.IsValid)
             {
+                rating.userId = User.Identity.GetUserId();
                 db.RatingSet.Add(rating);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.User_userId = new SelectList(db.UserSet, "userId", "FirstName", rating.User_userId);
             ViewBag.GPId = new SelectList(db.GPSet, "Id", "ADDRESS", rating.GPId);
             return View(rating);
         }
@@ -81,7 +81,6 @@ namespace FIT5032_assignment.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.User_userId = new SelectList(db.UserSet, "userId", "FirstName", rating.User_userId);
             ViewBag.GPId = new SelectList(db.GPSet, "Id", "ADDRESS", rating.GPId);
             return View(rating);
         }
@@ -92,7 +91,7 @@ namespace FIT5032_assignment.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "Id,User_userId,GPId")] Rating rating)
+        public ActionResult Edit([Bind(Include = "Id,GPId")] Rating rating)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +99,6 @@ namespace FIT5032_assignment.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.User_userId = new SelectList(db.UserSet, "userId", "FirstName", rating.User_userId);
             ViewBag.GPId = new SelectList(db.GPSet, "Id", "ADDRESS", rating.GPId);
             return View(rating);
         }

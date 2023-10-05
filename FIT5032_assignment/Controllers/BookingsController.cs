@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FIT5032_assignment.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FIT5032_assignment.Controllers
 {
@@ -18,7 +19,7 @@ namespace FIT5032_assignment.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var bookingSet = db.BookingSet.Include(b => b.User).Include(b => b.GP);
+            var bookingSet = db.BookingSet.Include(b => b.GP);
             return View(bookingSet.ToList());
         }
 
@@ -42,7 +43,6 @@ namespace FIT5032_assignment.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.User_userId = new SelectList(db.UserSet, "userId", "FirstName");
             ViewBag.GPId = new SelectList(db.GPSet, "Id", "ADDRESS");
             return View();
         }
@@ -53,16 +53,17 @@ namespace FIT5032_assignment.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind(Include = "Id,User_userId,GPId,bookingDateTime,total_cost")] Booking booking)
+        public ActionResult Create([Bind(Include = "Id,GPId,bookingDateTime,total_cost")] Booking booking)
         {
             if (ModelState.IsValid)
             {
+                booking.userId = User.Identity.GetUserId();
+
                 db.BookingSet.Add(booking);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.User_userId = new SelectList(db.UserSet, "userId", "FirstName", booking.User_userId);
             ViewBag.GPId = new SelectList(db.GPSet, "Id", "ADDRESS", booking.GPId);
             return View(booking);
         }
@@ -80,7 +81,6 @@ namespace FIT5032_assignment.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.User_userId = new SelectList(db.UserSet, "userId", "FirstName", booking.User_userId);
             ViewBag.GPId = new SelectList(db.GPSet, "Id", "ADDRESS", booking.GPId);
             return View(booking);
         }
@@ -91,7 +91,7 @@ namespace FIT5032_assignment.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "Id,User_userId,GPId,bookingDateTime,total_cost")] Booking booking)
+        public ActionResult Edit([Bind(Include = "Id,GPId,bookingDateTime,total_cost")] Booking booking)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,6 @@ namespace FIT5032_assignment.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.User_userId = new SelectList(db.UserSet, "userId", "FirstName", booking.User_userId);
             ViewBag.GPId = new SelectList(db.GPSet, "Id", "ADDRESS", booking.GPId);
             return View(booking);
         }

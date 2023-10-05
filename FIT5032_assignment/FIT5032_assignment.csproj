@@ -180,10 +180,8 @@
     <Compile Include="Controllers\BookingsController.cs" />
     <Compile Include="Controllers\GPsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\XraysController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -196,17 +194,11 @@
       <DependentUpon>XraySystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Image.cs">
-      <DependentUpon>XraySystem.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Rating.cs">
       <DependentUpon>XraySystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SendEmailViewModel.cs" />
-    <Compile Include="Models\User.cs">
-      <DependentUpon>XraySystem.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Xray.cs">
       <DependentUpon>XraySystem.tt</DependentUpon>
     </Compile>
@@ -346,17 +338,7 @@
     <Content Include="Views\Xrays\Details.cshtml" />
     <Content Include="Views\Xrays\Edit.cshtml" />
     <Content Include="Views\Xrays\Index.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Home\Send_Email.cshtml" />
-    <Content Include="Views\Images\Create.cshtml" />
-    <Content Include="Views\Images\Delete.cshtml" />
-    <Content Include="Views\Images\Details.cshtml" />
-    <Content Include="Views\Images\Edit.cshtml" />
-    <Content Include="Views\Images\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />

@@ -1,23 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
-    <EntitySetMapping Name="UserSet">
-      <EntityTypeMapping TypeName="IsTypeOf(Model1.User)">
-        <MappingFragment StoreEntitySet="UserSet">
-          <ScalarProperty Name="userId" ColumnName="userId" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="RatingSet">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Rating)">
         <MappingFragment StoreEntitySet="RatingSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="User_userId" ColumnName="User_userId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="GPId" ColumnName="GPId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -26,7 +14,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Booking)">
         <MappingFragment StoreEntitySet="BookingSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="User_userId" ColumnName="User_userId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="GPId" ColumnName="GPId" />
           <ScalarProperty Name="bookingDateTime" ColumnName="bookingDateTime" />
           <ScalarProperty Name="total_cost" ColumnName="total_cost" />
@@ -50,15 +38,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="cost" ColumnName="cost" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ImageSet">
-      <EntityTypeMapping TypeName="IsTypeOf(Model1.Image)">
-        <MappingFragment StoreEntitySet="ImageSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Path" ColumnName="Path" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
