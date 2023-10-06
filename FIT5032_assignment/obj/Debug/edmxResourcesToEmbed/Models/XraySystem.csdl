@@ -26,6 +26,7 @@
     <Property Name="userId" Type="String" Nullable="false" />
     <Property Name="GPId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="GP" Relationship="Model1.GPRating" FromRole="Rating" ToRole="GP" />
+    <Property Name="score" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Booking">
     <Key>
@@ -35,7 +36,6 @@
     <Property Name="userId" Type="String" Nullable="false" />
     <Property Name="GPId" Type="Int32" Nullable="false" />
     <Property Name="bookingDateTime" Type="DateTime" Nullable="false" />
-    <Property Name="total_cost" Type="Double" Nullable="false" />
     <NavigationProperty Name="GP" Relationship="Model1.GPBooking" FromRole="Booking" ToRole="GP" />
   </EntityType>
   <EntityType Name="GP">

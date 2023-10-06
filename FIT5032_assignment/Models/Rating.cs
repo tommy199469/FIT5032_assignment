@@ -17,6 +17,7 @@ namespace FIT5032_assignment.Models
         public int Id { get; set; }
         public string userId { get; set; }
         public int GPId { get; set; }
+        public int score { get; set; }
     
         public virtual GP GP { get; set; }
     }

@@ -53,7 +53,7 @@ namespace FIT5032_assignment.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind(Include = "Id,GPId,bookingDateTime,total_cost")] Booking booking)
+        public ActionResult Create([Bind(Include = "Id,GPId,bookingDateTime")] Booking booking)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace FIT5032_assignment.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "Id,GPId,bookingDateTime,total_cost")] Booking booking)
+        public ActionResult Edit([Bind(Include = "Id,GPId,bookingDateTime")] Booking booking)
         {
             if (ModelState.IsValid)
             {

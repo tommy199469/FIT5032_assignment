@@ -25,6 +25,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="userId" Type="nvarchar(max)" Nullable="false" />
     <Property Name="GPId" Type="int" Nullable="false" />
+    <Property Name="score" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BookingSet">
     <Key>
@@ -34,7 +35,6 @@
     <Property Name="userId" Type="nvarchar(max)" Nullable="false" />
     <Property Name="GPId" Type="int" Nullable="false" />
     <Property Name="bookingDateTime" Type="datetime" Nullable="false" />
-    <Property Name="total_cost" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="GPSet">
     <Key>

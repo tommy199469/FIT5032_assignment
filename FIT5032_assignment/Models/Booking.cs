@@ -18,7 +18,6 @@ namespace FIT5032_assignment.Models
         public string userId { get; set; }
         public int GPId { get; set; }
         public System.DateTime bookingDateTime { get; set; }
-        public double total_cost { get; set; }
     
         public virtual GP GP { get; set; }
     }

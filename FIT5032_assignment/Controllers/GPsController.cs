@@ -57,6 +57,7 @@ namespace FIT5032_assignment.Controllers
         {
             if (ModelState.IsValid)
             {
+                gP.ADDRESS = System.Web.HttpUtility.HtmlEncode(gP.ADDRESS);
                 db.GPSet.Add(gP);
                 db.SaveChanges();
                 return RedirectToAction("Index");

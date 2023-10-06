@@ -7,6 +7,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="GPId" ColumnName="GPId" />
+          <ScalarProperty Name="score" ColumnName="score" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -17,7 +18,6 @@
           <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="GPId" ColumnName="GPId" />
           <ScalarProperty Name="bookingDateTime" ColumnName="bookingDateTime" />
-          <ScalarProperty Name="total_cost" ColumnName="total_cost" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

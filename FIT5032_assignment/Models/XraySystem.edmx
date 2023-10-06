@@ -30,6 +30,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="userId" Type="nvarchar(max)" Nullable="false" />
     <Property Name="GPId" Type="int" Nullable="false" />
+    <Property Name="score" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BookingSet">
     <Key>
@@ -39,7 +40,6 @@
     <Property Name="userId" Type="nvarchar(max)" Nullable="false" />
     <Property Name="GPId" Type="int" Nullable="false" />
     <Property Name="bookingDateTime" Type="datetime" Nullable="false" />
-    <Property Name="total_cost" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="GPSet">
     <Key>
@@ -125,6 +125,7 @@
           <Property Name="userId" Type="String" Nullable="false" />
           <Property Name="GPId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="GP" Relationship="Model1.GPRating" FromRole="Rating" ToRole="GP" />
+          <Property Name="score" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Booking">
           <Key>
@@ -134,7 +135,6 @@
           <Property Name="userId" Type="String" Nullable="false" />
           <Property Name="GPId" Type="Int32" Nullable="false" />
           <Property Name="bookingDateTime" Type="DateTime" Nullable="false" />
-          <Property Name="total_cost" Type="Double" Nullable="false" />
           <NavigationProperty Name="GP" Relationship="Model1.GPBooking" FromRole="Booking" ToRole="GP" />
         </EntityType>
         <EntityType Name="GP">
@@ -207,6 +207,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="GPId" ColumnName="GPId" />
+          <ScalarProperty Name="score" ColumnName="score" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -217,7 +218,6 @@
           <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="GPId" ColumnName="GPId" />
           <ScalarProperty Name="bookingDateTime" ColumnName="bookingDateTime" />
-          <ScalarProperty Name="total_cost" ColumnName="total_cost" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

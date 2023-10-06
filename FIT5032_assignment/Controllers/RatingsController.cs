@@ -54,7 +54,7 @@ namespace FIT5032_assignment.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind(Include = "Id,GPId")] Rating rating)
+        public ActionResult Create([Bind(Include = "Id,GPId,score")] Rating rating)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace FIT5032_assignment.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "Id,GPId")] Rating rating)
+        public ActionResult Edit([Bind(Include = "Id,GPId,score")] Rating rating)
         {
             if (ModelState.IsValid)
             {

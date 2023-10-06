@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/06/2023 01:35:45
+-- Date Created: 10/06/2023 16:23:09
 -- Generated from EDMX file: C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\Models\XraySystem.edmx
 -- --------------------------------------------------
 
@@ -52,7 +52,8 @@ GO
 CREATE TABLE [dbo].[RatingSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [userId] nvarchar(max)  NOT NULL,
-    [GPId] int  NOT NULL
+    [GPId] int  NOT NULL,
+    [score] int  NOT NULL
 );
 GO
 
@@ -61,8 +62,7 @@ CREATE TABLE [dbo].[BookingSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [userId] nvarchar(max)  NOT NULL,
     [GPId] int  NOT NULL,
-    [bookingDateTime] datetime  NOT NULL,
-    [total_cost] float  NOT NULL
+    [bookingDateTime] datetime  NOT NULL
 );
 GO
 
