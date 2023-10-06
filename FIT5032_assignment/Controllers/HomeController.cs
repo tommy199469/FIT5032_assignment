@@ -1,4 +1,5 @@
-﻿using FIT5032_Week08A.Models;
+﻿using FIT5032_assignment.Models;
+using FIT5032_Week08A.Models;
 using FIT5032_Week08A.Utils;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,10 @@ namespace FIT5032_assignment.Controllers
         [Authorize(Roles ="Admin")]
         public ActionResult Send_Email()
         {
+            var db = new ApplicationDbContext();
+            var Users = db.Users;
+
+            ViewBag.users = Users.ToList();
             return View(new SendEmailViewModel());
         }
 
@@ -48,9 +53,9 @@ namespace FIT5032_assignment.Controllers
             {
                 try
                 {
-                 
-                    
-                    String toEmail = model.ToEmail;
+
+
+                    List<string> selectedRecipientIds = model.SelectedRecipients;
                     String subject = model.Subject;
                     String contents = model.Contents;
                     string filePath = "";
@@ -66,21 +71,32 @@ namespace FIT5032_assignment.Controllers
                     }
 
                     EmailSender es = new EmailSender();
-                    es.Send(toEmail, subject, contents, filePath);
+                    var db = new ApplicationDbContext();
+                    var Users = db.Users;
+                    ViewBag.users = Users.ToList();
+
+                    foreach (string recipientId in selectedRecipientIds)
+                    {
+                        // Retrieve the email address for the recipient using recipientId
+                        // You might need to fetch it from your database or some other source
+                        var user = db.Users.Find(recipientId);
+
+                        // Send the email to the recipient
+                        es.Send(user.Email, subject, contents, filePath);
+                    }
 
                     ViewBag.Result = "Email has been send.";
-
                     ModelState.Clear();
 
                     return View(new SendEmailViewModel());
                 }
                 catch
                 {
-                    return View();
+                    return View(new SendEmailViewModel());
                 }
             }
 
-            return View();
+            return View(new SendEmailViewModel());
         }
     }
 }
