@@ -9,31 +9,42 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.bookingDateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GP.ADDRESS)
-        </th>
-        <th></th>
-    </tr>
+<table class="table" id="bookingTable">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.bookingDateTime)</th>
+            <th>@Html.DisplayNameFor(model => model.GP.ADDRESS)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.bookingDateTime)</td>
+                <td>@Html.DisplayFor(modelItem => item.GP.ADDRESS)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.bookingDateTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GP.ADDRESS)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+@section Scripts {
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let table = new DataTable('#bookingTable', {
+                responsive: true
+            });
+        });
+    </script>
+
 }
 
-</table>

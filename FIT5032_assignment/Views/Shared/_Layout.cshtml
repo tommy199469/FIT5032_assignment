@@ -18,9 +18,6 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Booking", "Index", "Bookings", new { area = "" }, new { @class = "nav-link" })</li>
@@ -32,6 +29,10 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Xray", "Index", "Xrays", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Rating", "Index", "Ratings", new { area = "" }, new { @class = "nav-link" })</li>
                     }
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {

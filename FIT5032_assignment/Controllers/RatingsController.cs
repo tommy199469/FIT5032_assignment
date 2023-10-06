@@ -21,6 +21,10 @@ namespace FIT5032_assignment.Controllers
         public ActionResult Index()
         {
             var ratingSet = db.RatingSet.Include(r => r.GP);
+
+            double averageScore = ratingSet.Average(r => r.score);
+
+            ViewBag.AverageScore = averageScore; 
             return View(ratingSet.ToList());
         }
 
