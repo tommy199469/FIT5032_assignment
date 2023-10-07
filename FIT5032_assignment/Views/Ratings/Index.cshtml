@@ -41,3 +41,50 @@
     }
 
 </table>
+
+
+<canvas id="totalScoreChart" width="200" height="100"></canvas>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript">
+
+
+    var gpData = @Html.Raw(Json.Encode(ViewBag.GPData));
+
+    var gpNames = [];
+    var totalScores = [];
+
+    // Extract GP names and total scores from the gpData
+    for (var i = 0; i < gpData.length; i++) {
+        gpNames.push(gpData[i].Item1);
+        totalScores.push(gpData[i].Item2);
+    }
+
+    // Get the canvas element and create a chart
+    var ctx = document.getElementById('totalScoreChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: gpNames,  // Provide GP names as labels
+            datasets: [{
+                label: 'Total Scores',
+                data: totalScores,  
+                backgroundColor: 'RED',
+                borderColor: 'BLACK',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
+}

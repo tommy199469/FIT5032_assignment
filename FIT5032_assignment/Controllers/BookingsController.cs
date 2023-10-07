@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using FIT5032_assignment.Models;
 using Microsoft.AspNet.Identity;
+using Spire.Xls;
+using Newtonsoft.Json;
 
 namespace FIT5032_assignment.Controllers
 {
@@ -138,6 +140,64 @@ namespace FIT5032_assignment.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [Authorize]
+        public ActionResult ExportToCsv()
+        {
+            var bookingSet = db.BookingSet.Include(b => b.GP);
+            var bookings = bookingSet.ToList();
+
+            // Create a new workbook
+            Workbook workbook = new Workbook();
+            Worksheet worksheet = workbook.Worksheets[0];
+
+            // Set the header row
+            worksheet.Range["A1"].Text = "Booking ID";
+            worksheet.Range["B1"].Text = "GP ID";
+            worksheet.Range["C1"].Text = "Booking Date";
+
+            int row = 2;
+            foreach (var booking in bookings)
+            {
+                worksheet.Range[row, 1].Value = booking.Id.ToString();
+                worksheet.Range[row, 2].Value = booking.GPId.ToString();
+                worksheet.Range[row, 3].Value = booking.bookingDateTime.ToString("yyyy-MM-dd");
+                row++;
+            }
+
+            var textFileName = "bookings.csv";
+            var textFilePath = Server.MapPath("~/App_Data/" + textFileName);
+            workbook.SaveToFile(textFilePath, FileFormat.CSV);
+
+            Response.ContentType = "text/csv";
+            Response.AddHeader("content-disposition", $"attachment; filename={textFileName}");
+
+            return File(textFilePath, "text/csv");
+        }
+
+        [Authorize]
+        public ActionResult ExportToJson()
+        {
+            var bookingSet = db.BookingSet.Include(b => b.GP);
+            var bookings = bookingSet.ToList();
+
+            JsonSerializerSettings jsonSettings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            string json = JsonConvert.SerializeObject(bookings, Formatting.Indented, jsonSettings);
+
+
+            var jsonName = "bookings.json";
+            var jsonFilePath = Server.MapPath("~/Export/" + jsonName);
+            System.IO.File.WriteAllText(jsonFilePath, json);
+
+            Response.ContentType = "application/json";
+            Response.AddHeader("content-disposition", $"attachment; filename={jsonName}");
+
+            return File(jsonFilePath, "application/json");
         }
     }
 }

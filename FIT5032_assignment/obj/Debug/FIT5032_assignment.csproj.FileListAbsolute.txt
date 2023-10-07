@@ -110,3 +110,8 @@ C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\obj\Debug\FIT50
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\obj\Debug\FIT5032_assignment.csproj.CopyComplete
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\obj\Debug\FIT5032_assignment.dll
 C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\obj\Debug\FIT5032_assignment.pdb
+C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\Spire.Pdf.dll
+C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\Spire.XLS.dll
+C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\Microsoft.mshtml.dll
+C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\Spire.Pdf.xml
+C:\Users\User\source\repos\FIT5032_assignment\FIT5032_assignment\bin\Spire.XLS.xml

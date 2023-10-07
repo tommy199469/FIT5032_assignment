@@ -24,7 +24,20 @@ namespace FIT5032_assignment.Controllers
 
             double averageScore = ratingSet.Average(r => r.score);
 
-            ViewBag.AverageScore = averageScore; 
+            var gpData = new List<Tuple<string, int>>(); // Create a list to store GP data
+
+            // Loop through your GP data and calculate the total score for each GP
+            foreach (var gp in db.GPSet.ToList())
+            {
+                var totalScore = db.RatingSet.Where(r => r.GPId == gp.Id).Sum(r => r.score);
+                gpData.Add(Tuple.Create(gp.ADDRESS, totalScore));
+            }
+
+
+            ViewBag.AverageScore = averageScore;
+
+            ViewBag.gpData = gpData;
+
             return View(ratingSet.ToList());
         }
 
