@@ -4,11 +4,14 @@
     ViewBag.Title = "Index";
 }
 
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -26,34 +29,120 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ADDRESS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Xray.type)
-        </td>
-        <td>
-            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-            {
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ADDRESS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Xray.type)
+            </td>
+            <td>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
 
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-            }
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-            {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                }
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
 
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            }
-        </td>
-    </tr>
-}
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                }
+            </td>
+            <td>
+                <div style="cursor:pointer;" class="navigateButton" data-address="@item.ADDRESS" onclick="navigateToAddress('@item.ADDRESS')">Navigate</div>
+            </td>
+
+        </tr>
+    }
 
 </table>
+
+<div style="width:80vw; height:50vh;" id="map"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css" type="text/css">
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoidG9tbXkxOTk0NjkiLCJhIjoiY2xuZzF0ZHN0MHBuZDJsbWtpcHdmeDZtaCJ9.KvGTfS6vkI1nCofoVo9wyg';
+
+        var userLocation = [];
+        var map;
+        let directionsControl;
+
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                userLocation = [position.coords.longitude, position.coords.latitude];
+
+                map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/streets-v12',
+                    center: userLocation,
+                    zoom: 14
+                });
+            }, (error) => {
+                console.error('Error:', error);
+            });
+        } else {
+            console.error('Map is not working');
+        }
+
+
+
+        // Event listener for the "Navigate" div
+        function navigateToAddress(address) {
+            // Use the Mapbox Geocoding API to convert the address to coordinates
+            fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=` + mapboxgl.accessToken)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.features && data.features.length > 0) {
+                        // Extract the longitude and latitude from the geocoding response
+                        const coordinates = data.features[0].geometry.coordinates
+
+
+                        var directions = new MapboxDirections({
+                            accessToken: mapboxgl.accessToken
+                        });
+
+                        map.addControl(directions, 'top-left');
+
+
+                        directions.setOrigin(userLocation);
+                        directions.setDestinaion(coordinates); 
+
+                        map.setCenter(coordinates);
+
+                        // Add a marker at the coordinates
+                        new mapboxgl.Marker()
+                            .setLngLat(coordinates)
+                            .addTo(map);
+                    } else {
+                        console.error('Geocoding failed');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+
+
+
+    </script>
+
+
+
+}
