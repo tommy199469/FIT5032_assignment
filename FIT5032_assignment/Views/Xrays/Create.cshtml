@@ -57,11 +57,19 @@
                     },
                     'cost': {
                         required: true,
+                        number: true,
+                        min: 100,
+                        max: 10000
                     }
                 },
                 messages: {
                     'type': 'Please enter type',
-                    'cost': 'Please enter cost'
+                    'cost': {
+                        required: 'Please enter cost',
+                        number: 'Please enter number',
+                        min: 'Cost cannot lower than 100',
+                        max: 'Cost cannot more than 10000'
+                    }
                 },
                 errorPlacement: function (error, element) {
                     var id = element.attr('id') + '-error';
@@ -69,10 +77,10 @@
                     error.appendTo('#' + id);
                 },
                 highlight: function (element) {
-                    $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+                    $(element).closest('.form-group').removeClass('success').addClass('error');
                 },
                 unhighlight: function (element) {
-                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    $(element).closest('.form-group').removeClass('error').addClass('success');
                 }
             });
         });
