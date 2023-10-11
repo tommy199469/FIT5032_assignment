@@ -11,13 +11,18 @@ namespace FIT5032_assignment.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Booking
     {
         public int Id { get; set; }
         public string userId { get; set; }
         public int GPId { get; set; }
-        public System.DateTime bookingDateTime { get; set; }
+
+        [DataType(DataType.Date)]
+        [Column(TypeName = "Date")]
+        public DateTime bookingDateTime { get; set; }
     
         public virtual GP GP { get; set; }
     }

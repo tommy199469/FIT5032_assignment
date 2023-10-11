@@ -263,7 +263,6 @@
     <Content Include="Models\XraySystem.edmx.sql" />
     <Content Include="Models\XraySystem.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>XraySystem.cs</LastGenOutput>
       <DependentUpon>XraySystem.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />

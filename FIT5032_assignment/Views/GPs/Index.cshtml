@@ -100,8 +100,6 @@
             console.error('Map is not working');
         }
 
-
-
         // Event listener for the "Navigate" div
         function navigateToAddress(address) {
             // Use the Mapbox Geocoding API to convert the address to coordinates
@@ -121,7 +119,7 @@
 
 
                         directions.setOrigin(userLocation);
-                        directions.setDestinaion(coordinates); 
+                        directions.setDestination(coordinates); 
 
                         map.setCenter(coordinates);
 

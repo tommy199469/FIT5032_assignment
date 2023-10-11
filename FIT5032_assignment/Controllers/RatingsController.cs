@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FIT5032_assignment.Models;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 
 namespace FIT5032_assignment.Controllers
@@ -24,22 +25,34 @@ namespace FIT5032_assignment.Controllers
 
             double averageScore = ratingSet.Average(r => r.score);
 
-            var gpData = new List<Tuple<string, int>>(); // Create a list to store GP data
+            var gpData = new List<Tuple<string, double>>(); 
 
-            // Loop through your GP data and calculate the total score for each GP
             foreach (var gp in db.GPSet.ToList())
             {
-                var totalScore = db.RatingSet.Where(r => r.GPId == gp.Id).Sum(r => r.score);
-                gpData.Add(Tuple.Create(gp.ADDRESS, totalScore));
+                var ratings = ratingSet.Where(r => r.GPId == gp.Id).ToList(); 
+                double totalScore = 0;
+                int count = 0;
+
+                foreach (var rating in ratings)
+                {
+                    if (rating.score != null)
+                    {
+                        totalScore += (double)rating.score;
+                        count++;
+                    }
+                }
+
+                double gpAverage = (count > 0) ? totalScore / count : 0; 
+                gpData.Add(Tuple.Create(gp.ADDRESS, gpAverage));
             }
 
 
             ViewBag.AverageScore = averageScore;
-
-            ViewBag.gpData = gpData;
+            ViewBag.GPData = gpData;
 
             return View(ratingSet.ToList());
         }
+
 
         // GET: Ratings/Details/5
         [Authorize]
