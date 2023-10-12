@@ -93,6 +93,13 @@
                     center: userLocation,
                     zoom: 14
                 });
+
+                map.setCenter(userLocation);
+
+                new mapboxgl.Marker()
+                    .setLngLat(userLocation)
+                    .addTo(map);
+
             }, (error) => {
                 console.error('Error:', error);
             });
@@ -135,12 +142,5 @@
                     console.error('Error:', error);
                 });
         }
-
-
-
-
     </script>
-
-
-
 }
