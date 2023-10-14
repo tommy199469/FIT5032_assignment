@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Create";
+    var pageTitle = "Rating";
 }
 
 <h2>Create</h2>
@@ -12,7 +13,7 @@
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>Rating</h4>
+    <h4>@pageTitle</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
