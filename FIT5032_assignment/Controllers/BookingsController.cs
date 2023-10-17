@@ -22,6 +22,19 @@ namespace FIT5032_assignment.Controllers
         public ActionResult Index()
         {
             var bookingSet = db.BookingSet.Include(b => b.GP);
+            var totalBookingOfGP = bookingSet
+                    .GroupBy(b => b.GP.ADDRESS)
+                    .Select(group => new
+                    {
+                        Address = group.Key, 
+                        TotalBookings = group.Count() 
+                    })
+                    .ToList();
+
+            ViewBag.TotalBookingOfGP = totalBookingOfGP;
+
+
+
             return View(bookingSet.ToList());
         }
 
