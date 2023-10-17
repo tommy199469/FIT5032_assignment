@@ -44,7 +44,6 @@ namespace FIT5032_assignment.Controllers
             return View(new SendEmailViewModel());
         }
 
-
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult Send_Email(SendEmailViewModel model, HttpPostedFileBase postedFile)

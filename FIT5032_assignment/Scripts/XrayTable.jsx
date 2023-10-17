@@ -32,6 +32,11 @@
         this.setState({ highlightedIndex: maxIndex });
     };
 
+    discardHighLight = () => {
+        this.setState({ highlightedIndex: -1 })
+    }
+
+
     render() {
         const { data, highlightedIndex } = this.state;
 
@@ -44,6 +49,11 @@
                 >
                     Highlight Most Expensive
                 </button>
+
+                <button
+                    className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-10 ml-10"
+                    onClick={this.discardHighLight }
+                >Discard HighLight</button>
                 <ul>
                     {data.map((xrayType, index) => (
                         <li

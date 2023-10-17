@@ -59,16 +59,32 @@ namespace FIT5032_assignment.Controllers
         {
             if (ModelState.IsValid)
             {
-                booking.userId = User.Identity.GetUserId();
+                var existingBooking = db.BookingSet.FirstOrDefault(b => b.bookingDateTime == booking.bookingDateTime && b.GPId == booking.GPId);
+                if (booking.bookingDateTime.Date < DateTime.Today)
+                {
+                    ModelState.AddModelError("bookingDateTime", "You only allow to book the date after today.");
+                }
 
-                db.BookingSet.Add(booking);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (existingBooking != null)
+                {
+                    // If a booking is found, we want to inform the user and return the view.
+                    ModelState.AddModelError(string.Empty, "The GP was occupyied, please choose another date.");
+                }
+                else
+                {
+                    // If no booking is found, proceed with creating the new booking.
+                    booking.userId = User.Identity.GetUserId();
+                    db.BookingSet.Add(booking);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
+            // If we reach here, something failed, redisplay form.
             ViewBag.GPId = new SelectList(db.GPSet, "Id", "ADDRESS", booking.GPId);
             return View(booking);
         }
+
 
         // GET: Bookings/Edit/5
         [Authorize]

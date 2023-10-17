@@ -3,16 +3,47 @@
     "GP": {
       "Booking": [
         {
-          "Id": 2,
+          "Id": 4,
           "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
           "GPId": 1,
-          "bookingDateTime": "2023-04-11T00:00:00"
+          "bookingDateTime": "2023-10-14T00:00:00"
+        },
+        {
+          "Id": 6,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-03T00:00:00"
+        },
+        {
+          "Id": 7,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-03T00:00:00"
+        },
+        {
+          "Id": 9,
+          "userId": "4ac26573-2a25-4608-8ede-5013ec34d239",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-07T00:00:00"
         }
       ],
       "Xray": {
         "GP": [
           {
-            "Booking": [],
+            "Booking": [
+              {
+                "Id": 5,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 2,
+                "bookingDateTime": "2023-10-13T00:00:00"
+              },
+              {
+                "Id": 8,
+                "userId": "4ac26573-2a25-4608-8ede-5013ec34d239",
+                "GPId": 2,
+                "bookingDateTime": "2023-10-07T00:00:00"
+              }
+            ],
             "Rating": [],
             "Id": 2,
             "ADDRESS": "monash",
@@ -49,69 +80,18 @@
           "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
           "GPId": 1,
           "score": 10
-        }
-      ],
-      "Id": 1,
-      "ADDRESS": "Monash",
-      "phone": "123123",
-      "email": "monash@gmail.com",
-      "XrayId": 1
-    },
-    "Id": 1,
-    "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
-    "GPId": 1,
-    "bookingDateTime": "2023-02-11T00:00:00"
-  },
-  {
-    "GP": {
-      "Booking": [
-        {
-          "Id": 1,
-          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
-          "GPId": 1,
-          "bookingDateTime": "2023-02-11T00:00:00"
-        }
-      ],
-      "Xray": {
-        "GP": [
-          {
-            "Booking": [],
-            "Rating": [],
-            "Id": 2,
-            "ADDRESS": "monash",
-            "phone": "123123",
-            "email": "12312312",
-            "XrayId": 1
-          }
-        ],
-        "Id": 1,
-        "type": "full body",
-        "cost": 1000.0
-      },
-      "Rating": [
-        {
-          "Id": 1,
-          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
-          "GPId": 1,
-          "score": 4
         },
         {
-          "Id": 2,
+          "Id": 5,
           "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
           "GPId": 1,
-          "score": 4
+          "score": 0
         },
         {
-          "Id": 3,
+          "Id": 6,
           "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
           "GPId": 1,
-          "score": -1
-        },
-        {
-          "Id": 4,
-          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
-          "GPId": 1,
-          "score": 10
+          "score": 100
         }
       ],
       "Id": 1,
@@ -124,5 +104,641 @@
     "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
     "GPId": 1,
     "bookingDateTime": "2023-04-11T00:00:00"
+  },
+  {
+    "GP": {
+      "Booking": [
+        {
+          "Id": 2,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-04-11T00:00:00"
+        },
+        {
+          "Id": 6,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-03T00:00:00"
+        },
+        {
+          "Id": 7,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-03T00:00:00"
+        },
+        {
+          "Id": 9,
+          "userId": "4ac26573-2a25-4608-8ede-5013ec34d239",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-07T00:00:00"
+        }
+      ],
+      "Xray": {
+        "GP": [
+          {
+            "Booking": [
+              {
+                "Id": 5,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 2,
+                "bookingDateTime": "2023-10-13T00:00:00"
+              },
+              {
+                "Id": 8,
+                "userId": "4ac26573-2a25-4608-8ede-5013ec34d239",
+                "GPId": 2,
+                "bookingDateTime": "2023-10-07T00:00:00"
+              }
+            ],
+            "Rating": [],
+            "Id": 2,
+            "ADDRESS": "monash",
+            "phone": "123123",
+            "email": "12312312",
+            "XrayId": 1
+          }
+        ],
+        "Id": 1,
+        "type": "full body",
+        "cost": 1000.0
+      },
+      "Rating": [
+        {
+          "Id": 1,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 4
+        },
+        {
+          "Id": 2,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 4
+        },
+        {
+          "Id": 3,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": -1
+        },
+        {
+          "Id": 4,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 10
+        },
+        {
+          "Id": 5,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 0
+        },
+        {
+          "Id": 6,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 100
+        }
+      ],
+      "Id": 1,
+      "ADDRESS": "Monash",
+      "phone": "123123",
+      "email": "monash@gmail.com",
+      "XrayId": 1
+    },
+    "Id": 4,
+    "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+    "GPId": 1,
+    "bookingDateTime": "2023-10-14T00:00:00"
+  },
+  {
+    "GP": {
+      "Booking": [
+        {
+          "Id": 8,
+          "userId": "4ac26573-2a25-4608-8ede-5013ec34d239",
+          "GPId": 2,
+          "bookingDateTime": "2023-10-07T00:00:00"
+        }
+      ],
+      "Xray": {
+        "GP": [
+          {
+            "Booking": [
+              {
+                "Id": 2,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "bookingDateTime": "2023-04-11T00:00:00"
+              },
+              {
+                "Id": 4,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "bookingDateTime": "2023-10-14T00:00:00"
+              },
+              {
+                "Id": 6,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "bookingDateTime": "2023-10-03T00:00:00"
+              },
+              {
+                "Id": 7,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "bookingDateTime": "2023-10-03T00:00:00"
+              },
+              {
+                "Id": 9,
+                "userId": "4ac26573-2a25-4608-8ede-5013ec34d239",
+                "GPId": 1,
+                "bookingDateTime": "2023-10-07T00:00:00"
+              }
+            ],
+            "Rating": [
+              {
+                "Id": 1,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "score": 4
+              },
+              {
+                "Id": 2,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "score": 4
+              },
+              {
+                "Id": 3,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "score": -1
+              },
+              {
+                "Id": 4,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "score": 10
+              },
+              {
+                "Id": 5,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "score": 0
+              },
+              {
+                "Id": 6,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "score": 100
+              }
+            ],
+            "Id": 1,
+            "ADDRESS": "Monash",
+            "phone": "123123",
+            "email": "monash@gmail.com",
+            "XrayId": 1
+          }
+        ],
+        "Id": 1,
+        "type": "full body",
+        "cost": 1000.0
+      },
+      "Rating": [],
+      "Id": 2,
+      "ADDRESS": "monash",
+      "phone": "123123",
+      "email": "12312312",
+      "XrayId": 1
+    },
+    "Id": 5,
+    "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+    "GPId": 2,
+    "bookingDateTime": "2023-10-13T00:00:00"
+  },
+  {
+    "GP": {
+      "Booking": [
+        {
+          "Id": 2,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-04-11T00:00:00"
+        },
+        {
+          "Id": 4,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-14T00:00:00"
+        },
+        {
+          "Id": 7,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-03T00:00:00"
+        },
+        {
+          "Id": 9,
+          "userId": "4ac26573-2a25-4608-8ede-5013ec34d239",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-07T00:00:00"
+        }
+      ],
+      "Xray": {
+        "GP": [
+          {
+            "Booking": [
+              {
+                "Id": 5,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 2,
+                "bookingDateTime": "2023-10-13T00:00:00"
+              },
+              {
+                "Id": 8,
+                "userId": "4ac26573-2a25-4608-8ede-5013ec34d239",
+                "GPId": 2,
+                "bookingDateTime": "2023-10-07T00:00:00"
+              }
+            ],
+            "Rating": [],
+            "Id": 2,
+            "ADDRESS": "monash",
+            "phone": "123123",
+            "email": "12312312",
+            "XrayId": 1
+          }
+        ],
+        "Id": 1,
+        "type": "full body",
+        "cost": 1000.0
+      },
+      "Rating": [
+        {
+          "Id": 1,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 4
+        },
+        {
+          "Id": 2,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 4
+        },
+        {
+          "Id": 3,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": -1
+        },
+        {
+          "Id": 4,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 10
+        },
+        {
+          "Id": 5,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 0
+        },
+        {
+          "Id": 6,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 100
+        }
+      ],
+      "Id": 1,
+      "ADDRESS": "Monash",
+      "phone": "123123",
+      "email": "monash@gmail.com",
+      "XrayId": 1
+    },
+    "Id": 6,
+    "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+    "GPId": 1,
+    "bookingDateTime": "2023-10-03T00:00:00"
+  },
+  {
+    "GP": {
+      "Booking": [
+        {
+          "Id": 2,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-04-11T00:00:00"
+        },
+        {
+          "Id": 4,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-14T00:00:00"
+        },
+        {
+          "Id": 6,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-03T00:00:00"
+        },
+        {
+          "Id": 9,
+          "userId": "4ac26573-2a25-4608-8ede-5013ec34d239",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-07T00:00:00"
+        }
+      ],
+      "Xray": {
+        "GP": [
+          {
+            "Booking": [
+              {
+                "Id": 5,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 2,
+                "bookingDateTime": "2023-10-13T00:00:00"
+              },
+              {
+                "Id": 8,
+                "userId": "4ac26573-2a25-4608-8ede-5013ec34d239",
+                "GPId": 2,
+                "bookingDateTime": "2023-10-07T00:00:00"
+              }
+            ],
+            "Rating": [],
+            "Id": 2,
+            "ADDRESS": "monash",
+            "phone": "123123",
+            "email": "12312312",
+            "XrayId": 1
+          }
+        ],
+        "Id": 1,
+        "type": "full body",
+        "cost": 1000.0
+      },
+      "Rating": [
+        {
+          "Id": 1,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 4
+        },
+        {
+          "Id": 2,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 4
+        },
+        {
+          "Id": 3,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": -1
+        },
+        {
+          "Id": 4,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 10
+        },
+        {
+          "Id": 5,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 0
+        },
+        {
+          "Id": 6,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 100
+        }
+      ],
+      "Id": 1,
+      "ADDRESS": "Monash",
+      "phone": "123123",
+      "email": "monash@gmail.com",
+      "XrayId": 1
+    },
+    "Id": 7,
+    "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+    "GPId": 1,
+    "bookingDateTime": "2023-10-03T00:00:00"
+  },
+  {
+    "GP": {
+      "Booking": [
+        {
+          "Id": 5,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 2,
+          "bookingDateTime": "2023-10-13T00:00:00"
+        }
+      ],
+      "Xray": {
+        "GP": [
+          {
+            "Booking": [
+              {
+                "Id": 2,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "bookingDateTime": "2023-04-11T00:00:00"
+              },
+              {
+                "Id": 4,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "bookingDateTime": "2023-10-14T00:00:00"
+              },
+              {
+                "Id": 6,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "bookingDateTime": "2023-10-03T00:00:00"
+              },
+              {
+                "Id": 7,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "bookingDateTime": "2023-10-03T00:00:00"
+              },
+              {
+                "Id": 9,
+                "userId": "4ac26573-2a25-4608-8ede-5013ec34d239",
+                "GPId": 1,
+                "bookingDateTime": "2023-10-07T00:00:00"
+              }
+            ],
+            "Rating": [
+              {
+                "Id": 1,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "score": 4
+              },
+              {
+                "Id": 2,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "score": 4
+              },
+              {
+                "Id": 3,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "score": -1
+              },
+              {
+                "Id": 4,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "score": 10
+              },
+              {
+                "Id": 5,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "score": 0
+              },
+              {
+                "Id": 6,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 1,
+                "score": 100
+              }
+            ],
+            "Id": 1,
+            "ADDRESS": "Monash",
+            "phone": "123123",
+            "email": "monash@gmail.com",
+            "XrayId": 1
+          }
+        ],
+        "Id": 1,
+        "type": "full body",
+        "cost": 1000.0
+      },
+      "Rating": [],
+      "Id": 2,
+      "ADDRESS": "monash",
+      "phone": "123123",
+      "email": "12312312",
+      "XrayId": 1
+    },
+    "Id": 8,
+    "userId": "4ac26573-2a25-4608-8ede-5013ec34d239",
+    "GPId": 2,
+    "bookingDateTime": "2023-10-07T00:00:00"
+  },
+  {
+    "GP": {
+      "Booking": [
+        {
+          "Id": 2,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-04-11T00:00:00"
+        },
+        {
+          "Id": 4,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-14T00:00:00"
+        },
+        {
+          "Id": 6,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-03T00:00:00"
+        },
+        {
+          "Id": 7,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "bookingDateTime": "2023-10-03T00:00:00"
+        }
+      ],
+      "Xray": {
+        "GP": [
+          {
+            "Booking": [
+              {
+                "Id": 5,
+                "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+                "GPId": 2,
+                "bookingDateTime": "2023-10-13T00:00:00"
+              },
+              {
+                "Id": 8,
+                "userId": "4ac26573-2a25-4608-8ede-5013ec34d239",
+                "GPId": 2,
+                "bookingDateTime": "2023-10-07T00:00:00"
+              }
+            ],
+            "Rating": [],
+            "Id": 2,
+            "ADDRESS": "monash",
+            "phone": "123123",
+            "email": "12312312",
+            "XrayId": 1
+          }
+        ],
+        "Id": 1,
+        "type": "full body",
+        "cost": 1000.0
+      },
+      "Rating": [
+        {
+          "Id": 1,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 4
+        },
+        {
+          "Id": 2,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 4
+        },
+        {
+          "Id": 3,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": -1
+        },
+        {
+          "Id": 4,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 10
+        },
+        {
+          "Id": 5,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 0
+        },
+        {
+          "Id": 6,
+          "userId": "0861a519-7c04-4b85-9777-5fe5df865ca3",
+          "GPId": 1,
+          "score": 100
+        }
+      ],
+      "Id": 1,
+      "ADDRESS": "Monash",
+      "phone": "123123",
+      "email": "monash@gmail.com",
+      "XrayId": 1
+    },
+    "Id": 9,
+    "userId": "4ac26573-2a25-4608-8ede-5013ec34d239",
+    "GPId": 1,
+    "bookingDateTime": "2023-10-07T00:00:00"
   }
 ]

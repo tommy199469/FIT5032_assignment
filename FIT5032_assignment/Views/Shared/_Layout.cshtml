@@ -9,50 +9,55 @@
     <title>@ViewBag.Title - @systemName</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink(@systemName, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Booking", "Index", "Bookings", new { area = "" }, new { @class = "nav-link" })</li>
-                    }
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("GPs", "Index", "Gps", new { area = "" }, new { @class = "nav-link" })</li>
-                    }
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Xray", "Index", "Xrays", new { area = "" }, new { @class = "nav-link" })</li>
-                    }
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Rating", "Index", "Ratings", new { area = "" }, new { @class = "nav-link" })</li>
-                    }
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                    {
-                        <li>@Html.ActionLink("Send Email", "Send_Email", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    }
-                </ul>
-                @Html.Partial("_LoginPartial")
+    <div style="display:flex; flex-direction:row; height:100%; ">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+            <div class="container" style="display:flex; flex-direction:column; flex:0.2">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between visible flex-column">
+                    @Html.ActionLink(@systemName, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    <ul class="navbar-nav flex-column">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Booking", "Index", "Bookings", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("GPs", "Index", "Gps", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Xray", "Index", "Xrays", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Rating", "Index", "Ratings", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Send Email", "Send_Email", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+
+                </div>
             </div>
+        </nav>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - @systemName</p>
+            </footer>
         </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - @systemName</p>
-        </footer>
+
     </div>
+
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

@@ -12,7 +12,7 @@ namespace FIT5032_Week08A.Utils
     public class EmailSender
     {
         // Please use your API KEY here.
-        private const String API_KEY = "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";
+        private const String API_KEY = "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";
         public void Send(string toEmail, string subject, string contents, string filePath)
         {
             var client = new SendGridClient(API_KEY);

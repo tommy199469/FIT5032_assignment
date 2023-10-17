@@ -5,7 +5,7 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="navbar-nav navbar-right">
+    <ul class="navbar-nav navbar-right flex-column justify-content-center align-items-center">
         <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class="nav-link" })
         </li>
